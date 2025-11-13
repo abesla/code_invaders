@@ -20,12 +20,7 @@ module CodeInvaders
           result = calculate_match(offset_x, offset_y)
 
           if result[:score] >= @threshold
-            matches << {
-              invader_name: @invader.name,
-              x: offset_x,
-              y: offset_y,
-              score: result[:score]
-            }
+            matches << MatchResult.new(@invader.name, offset_x, offset_y, result[:score], off_screen: false)
           end
         end
       end

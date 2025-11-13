@@ -142,8 +142,32 @@ Ukoliko se ukaže potreba može se dodati još jedan parametar u konstruktor.__
 
 5. **Filtriranje na osnovu threshold-a**: Ako je broj podudaranja veći od postavljenog praga (threshold-a) za detekciju, bilježi se pozicija kao potencijalna detekcija invadera.
 
+### Ispis rezultata
 
-### Opis napravljenih klasa
+Rezultati detekcije invadera trebaju biti formatirani i ispisani u konzoli tako da za svaki rezultat imamo:
+* Ime invadera
+* Koordinate početne pozicije
+* Procenat podudaranja
+
+Rezultate bi bilo dobro sortitati po procentu podudaranja tako da na vrhu budu rezultati sa najvećim procentom.
+
+## Glavni modul
+
+Glavni modul treba da sadrži logiku za pokretanje rješenja i nalazi se u root folderu projekta pod nazivom `code_invaders.rb`.
+
+## Klase u projektu
+
+Projekat treba biti organiziran tako da svaka klasa bude odgovorna za samo jedan specifični zadatak.
+
+### Zadaci
+
+1. Strukture podataka koji će se koristiti (Radar, Invader, Result, Error-i**)
+2. Validacija ulaznih fajlova
+3. Skeniranje radara
+4. Detekcija invadera
+5. Ispis rezultata
+
+### Strukture podataka
 
 - `CodeInvaders::RadarSample` - Input uzorak čitanja sa radara
     - `grid` - 2D array koji sadrži karaktere radara
@@ -159,21 +183,58 @@ Ukoliko se ukaže potreba može se dodati još jedan parametar u konstruktor.__
     - `height` - visina invadera
     - `parse` - metoda za parsiranje ulaznog fajla u 2D array
 
+
+- `CodeInvaders::MatchResult` - Rezultat detekcije invadera
+    - `invader_name` - ime invadera
+    - `x` - x koordinata pozicije
+    - `y` - y koordinata pozicije
+    - `score` - procenat podudaranja
+
+### Klasa za validaciju ulaznih fajlova
+
 - `CodeInvaders::InputValidator` - Klasa koja predstavlja validaciju ulaznih fajlova.
   U inicijalizaciji prima 2D niz koji predstavlja ulazni fajl, a sadrži metodu za provjeru ispravnosti učitanog niza
     - `validate` - metoda za provjeru ulaznog fajla koja vraća validirani 2D niz
 
-- `CodeInvaders::Errors::InvalidInputError` - Klasa koja predstavlja grešku koja se baca kada ulazni fajl nije validan 
+### Pattern Matcher
+
+- `CodeInvaders::PatternMatcher` - Klasa sadrži logiku za pronalaženje podudaranja između invadera i sekcija radara.
+    Sadrži metode za provjeru podudaranja i računanje postotka podudaranja.
+    * `find_matches` - metoda za provjeru podudaranja između invadera i sekcija radara i vraća listu rezultata detekcije invadera.
+    * `match_score` - metoda za računanje postotka podudaranja za određenu sekciju radara i invadera.
+
+### CodeInvaders::OutputFormatter
+
+- `CodeInvaders::OutputFormatter` - Klasa sadrži metod za formatiranje i ispis rezultata detekcije invadera.
+    * `print_results` - metoda za formatiranje i ispis rezultata detekcije invadera.
+
+### CodeInvaders::InputValidator
+
+- `CodeInvaders::InputValidator` - Klasa koja je zadužena za validaciju ulaznih fajlova.
+  U inicijalizaciji prima 2D niz koji predstavlja ulazni fajl, a sadrži metodu za provjeru ispravnosti učitanog niza
+    - `validate` - metoda za provjeru ulaznog fajla koja vraća validirani 2D niz i prijavljuje greške ako ulaz nije validan po nekom od zadatih kriterija.
+
+### Greške
+
+#### `CodeInvaders::Errors::InvalidInputError`
+
+- Klasa koja predstavlja grešku koja se baca kada ulazni fajl nije validan 
 (prazan ili u neodgovarajućem formatu). Ova greška prekida izvršavanje i ispisuje poruku greške.
 
-- `CodeInvaders::Errors::InconsistentLineWidthError` - Klasa koja predstavlja grešku koja se baca kada ulazni fajl ima linije različite dužine.
+#### `CodeInvaders::Errors::InconsistentLineWidthError`
+
+- Klasa koja predstavlja grešku koja se baca kada ulazni fajl ima linije različite dužine.
 Ova greška ne prekida izvršavanje koda već ispisuje upozorenje da su linije u ulaznom fajlu različite dužine,
 da dužina linija varira od $najmanja_dužina_reda do $najveća_dužina_reda,
 te da će se koristiti najmanja dužina linije za sve redove, a da će se ostatak kolona u redovima koji su duži od najmanjeg zanemariti.
 
-- `CodeInvaders::Errors::InvalidCharactersError` - Klasa koja predstavlja grešku koja se baca kada ulazni fajl sadrži nepoznate karaktere.
+#### `CodeInvaders::Errors::InvalidCharactersError`
+
+- Klasa koja predstavlja grešku koja se baca kada ulazni fajl sadrži nepoznate karaktere.
 Ova greška ne prekida izvršavanje koda već ispisuje upozorenje da ulazni fajl sadrži nepoznate karaktere,
 da će se karakteri koji nisu "-" ili "o" tretirati kao šum i da će se za njih slučajnim uzorkom dodijeliti vrijednost "-" ili "o".
 
-- `CodeInvaders::Errors::EmptyLineError` - Klasa koja predstavlja grešku koja se baca kada ulazni fajl ima prazne linije.
+#### `CodeInvaders::Errors::EmptyLineError`
+
+- Klasa koja predstavlja grešku koja se baca kada ulazni fajl ima prazne linije.
 Ova greška ne prekida izvršavanje koda već ispisuje upozorenje da ulazni fajl ima prazne linije, te da će se prazne linije zanemariti.

@@ -4,12 +4,13 @@
 require_relative 'code_invaders/radar_sample'
 require_relative 'code_invaders/invader_pattern'
 require_relative 'code_invaders/pattern_matcher'
+require_relative 'code_invaders/match_result'
+require_relative 'code_invaders/output_formatter'
 require_relative 'code_invaders/input_validator'
 require_relative 'code_invaders/errors/invalid_input_error'
 require_relative 'code_invaders/errors/inconsistent_line_width_error'
 require_relative 'code_invaders/errors/invalid_characters_error'
 require_relative 'code_invaders/errors/empty_line_error'
-
 module CodeInvaders
   def self.scan(radar_data, invaders)
     radar = RadarSample.new(radar_data)
@@ -40,8 +41,6 @@ module CodeInvaders
 
     results = scan(radar_data, [invader_a, invader_b])
 
-    results.each do |result|
-      puts "Detektovan invader '#{result.invader_name}' na koordinatama [#{result.x}, #{result.y}] sa score-om #{result.score}"
-    end
+    OutputFormatter.print_results(results)
   end
 end
