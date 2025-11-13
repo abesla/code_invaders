@@ -87,3 +87,19 @@ Ulazni fajlovi su .txt fajlovi sa sadržajem sample-ova iz code_invaders.md. Smj
     ~~~~
 
 S obzirom na to da su ulazni fajlovi formatirani u obliku `[height][width]`, pri izvršavanju ću ih parsirati u 2D nizove.
+
+## Provjera ulaznih fajlova
+
+Provjeriti da li ulazni fajlovi postoje.
+|-> (vratiti grešku da ulazni fajlovi ne postoje i zaustaviti izvršavanje)
+
+Provjeriti da li ulazni fajlovi u svim redovima imaju isti broj karaktera.
+|-> (vratiti upozorenje da će se uzeti najmanji broj karaktera u jednom redu i da će se napraviti niz te širine, 
+     a da će karakteri van tog okvira biti zanemareni u nastavku izvršavanja)
+
+Provjeriti da li ulazni fajlovi imaju druge karaktere osim "-" i "o"
+|-> (vratiti upozorenje da će se nepoznati karakteri tretirati kao šum, 
+     te da će slučanim uzorkom biti dodijeljene vrijednosti "-" ili "o" )
+
+Provjeriti da li ulazni fajlovi imaju prazne redove. 
+|-> (vratiti upozorenje da će prazni redovi biti zanemareni u unosu iz txt u 2D niz)
