@@ -88,7 +88,11 @@ Ulazni fajlovi su .txt fajlovi sa sadržajem sample-ova iz code_invaders.md. Smj
 
 S obzirom na to da su ulazni fajlovi formatirani u obliku `[height][width]`, pri izvršavanju ću ih parsirati u 2D nizove.
 
-`TODO: Napraviti logiku za automatizaciju čitanja ulaznih fajlova iz foldera data/invaders`
+~~TODO: Napraviti logiku za automatizaciju čitanja ulaznih fajlova iz foldera data/invaders~~
+Napravljena logika za automatizaciju čitanja ulaznih fajlova iz foldera data/invaders i data/radar.
+
+`TODO: Migrirati čitanje fajlova u zasebnu klasu`
+
 
 ## Provjera ulaznih fajlova
 
