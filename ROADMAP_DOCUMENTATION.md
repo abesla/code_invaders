@@ -104,6 +104,45 @@ Provjeriti da li ulazni fajlovi imaju druge karaktere osim "-" i "o"
 Provjeriti da li ulazni fajlovi imaju prazne redove. 
 |-> (vratiti upozorenje da će prazni redovi biti zanemareni u unosu iz txt u 2D niz)
 
+## Matching algoritam
+
+Pattern matching algoritam uzima kao ulazne parametre cijeli 2D niz invader paterna te cijeli 2D niz radara. 
+Iterira kroz kolone i redove radara spram broja kolona i redova invadera za koji se radi trenutna provjera.
+Nakon završene provjere za svaki od invadera vraća rezultate detekcije.
+
+Potrebno postaviti prag za detekciju invadera u postotku podudaranja, pa ukoliko je podudaranje na radaru u postotku većem od postavljenog praga,
+bilježi se početna koordinata koja je bila korištena za provjeru, te procenat podudaranja.
+
+Tom logikom bi se trebale izbjegaći potencijalne lažne detekcije invadera i kompenzovati šumovi na radaru,
+
+`NOTE: Ako znamo da su prisutne veće količine šuma na radaru, prag detekcije bi trebalo smanjiti, imajući pri tome u vidu da postoji veća šansa za lažnu detekciju.`
+
+### Threshold parametar
+- **threshold**: Prag detekcije u postotku (default: 0.65 = 65%) 
+
+__Za potrebe ovog zadatka postavio sam hardcoded vrijednost na 0.7, odnosno 70%, što bi trebalo dati dovoljno precizne, a ne prestroge kriterije za detekciju.
+Ukoliko se ukaže potreba može se dodati još jedan parametar u konstruktor.__
+
+### Koraci algoritma:
+
+1. **Provjera dimenzija**: Provjerava se da li invader može stati na radar (da li su dimenzije 2D niza invadera manje ili jednake dimenzijama radara).
+    - Ako je dimenzija invadera veća od dimenzija radara, prikazuje se upozorenje da taj invader ne može stati na radar, te da moguće detekcije mogu biti neuspješne.
+
+2. **Iteracija kroz 2D niz**: Za svaku od koordinata radara (x + offset_x, y + offset_y) koja se može uzeti kao početna radi se provjera podudaranja za svaki od unesenih invadera.
+    //TODO: Razmisliti o logici za partialy off-screen detekcije
+
+3. **Iteracija kroz kolone i redove invadera i radara**:
+    - Prolazi se kroz kolone i redove radara spram brojeva kolona i redova invadera za koji se radi provjera.
+    - **Preskaču se '-' pikseli** iz invader paterna jer ne doprinose ukupnom rezultatu matcha.
+    - Provjerava se da li radar ima isti karakter kao i invader na istom indexu:
+        - Ako invader ima karakter koji nije `-`, a koordinata je unutar dimenzija radara, povećava se broj ukupnih mogućih matcheva za 1.
+        - Ako invader i radar imaju isti karakter na istom indexu, povećava se broj podudaranja za 1.
+
+4. **Računanje score-a**: Vraća se broj podudaranja / ukupan broj mogućih matcheva u paternu invadera.
+
+5. **Filtriranje na osnovu threshold-a**: Ako je broj podudaranja veći od postavljenog praga (threshold-a) za detekciju, bilježi se pozicija kao potencijalna detekcija invadera.
+
+
 ### Opis napravljenih klasa
 
 - `CodeInvaders::RadarSample` - Input uzorak čitanja sa radara
