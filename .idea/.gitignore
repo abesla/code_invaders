@@ -1,0 +1,14 @@
+# Default ignored files
+/workspace.xml
+.idea/
+.vscode/
+
+
+# Custom ignored files
+*.iml
+*.log
+*.swp
+*.swo
+*.xml
+*.patch
+*.lock
