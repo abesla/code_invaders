@@ -88,6 +88,8 @@ Ulazni fajlovi su .txt fajlovi sa sadržajem sample-ova iz code_invaders.md. Smj
 
 S obzirom na to da su ulazni fajlovi formatirani u obliku `[height][width]`, pri izvršavanju ću ih parsirati u 2D nizove.
 
+`TODO: Napraviti logiku za automatizaciju čitanja ulaznih fajlova iz foldera data/invaders`
+
 ## Provjera ulaznih fajlova
 
 Provjeriti da li ulazni fajlovi postoje.
@@ -129,7 +131,7 @@ Ukoliko se ukaže potreba može se dodati još jedan parametar u konstruktor.__
     - Ako je dimenzija invadera veća od dimenzija radara, prikazuje se upozorenje da taj invader ne može stati na radar, te da moguće detekcije mogu biti neuspješne.
 
 2. **Iteracija kroz 2D niz**: Za svaku od koordinata radara (x + offset_x, y + offset_y) koja se može uzeti kao početna radi se provjera podudaranja za svaki od unesenih invadera.
-    //TODO: Razmisliti o logici za partialy off-screen detekcije
+   ***`TODO: Razmisliti o logici za partialy off-screen detekcije`***
 
 3. **Iteracija kroz kolone i redove invadera i radara**:
     - Prolazi se kroz kolone i redove radara spram brojeva kolona i redova invadera za koji se radi provjera.
@@ -141,6 +143,8 @@ Ukoliko se ukaže potreba može se dodati još jedan parametar u konstruktor.__
 4. **Računanje score-a**: Vraća se broj podudaranja / ukupan broj mogućih matcheva u paternu invadera.
 
 5. **Filtriranje na osnovu threshold-a**: Ako je broj podudaranja veći od postavljenog praga (threshold-a) za detekciju, bilježi se pozicija kao potencijalna detekcija invadera.
+
+***`TODO: Provjeriti da li bi se ovaj algoritam mogao optimizirati sa Pattern Matching-om iz Ruby-a`***
 
 ### Ispis rezultata
 
@@ -155,7 +159,8 @@ Rezultate bi bilo dobro sortitati po procentu podudaranja tako da na vrhu budu r
 
 Glavni modul treba da sadrži logiku za pokretanje rješenja i nalazi se u root folderu projekta pod nazivom `code_invaders.rb`.
 
-## Klase u projektu
+## Klase u projektu  
+***`TODO: provjeriti jošp jednom da li je sve u skladu sa SOLID i OOP principima`***
 
 Projekat treba biti organiziran tako da svaka klasa bude odgovorna za samo jedan specifični zadatak.
 
