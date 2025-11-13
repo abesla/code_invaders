@@ -103,3 +103,38 @@ Provjeriti da li ulazni fajlovi imaju druge karaktere osim "-" i "o"
 
 Provjeriti da li ulazni fajlovi imaju prazne redove. 
 |-> (vratiti upozorenje da će prazni redovi biti zanemareni u unosu iz txt u 2D niz)
+
+### Opis napravljenih klasa
+
+- `CodeInvaders::RadarSample` - Input uzorak čitanja sa radara
+    - `grid` - 2D array koji sadrži karaktere radara
+    - `width` - širina radara
+    - `height` - visina radara
+    - `parse` - metoda za parsiranje ulaznog fajla u 2D array
+
+
+- `CodeInvaders::InvaderPattern` - Input uzorak invadera
+    - `name` - ime invadera
+    - `grid` - 2D array koji sadrži karaktere invadera
+    - `width` - širina invadera
+    - `height` - visina invadera
+    - `parse` - metoda za parsiranje ulaznog fajla u 2D array
+
+- `CodeInvaders::InputValidator` - Klasa koja predstavlja validaciju ulaznih fajlova.
+  U inicijalizaciji prima 2D niz koji predstavlja ulazni fajl, a sadrži metodu za provjeru ispravnosti učitanog niza
+    - `validate` - metoda za provjeru ulaznog fajla koja vraća validirani 2D niz
+
+- `CodeInvaders::Errors::InvalidInputError` - Klasa koja predstavlja grešku koja se baca kada ulazni fajl nije validan 
+(prazan ili u neodgovarajućem formatu). Ova greška prekida izvršavanje i ispisuje poruku greške.
+
+- `CodeInvaders::Errors::InconsistentLineWidthError` - Klasa koja predstavlja grešku koja se baca kada ulazni fajl ima linije različite dužine.
+Ova greška ne prekida izvršavanje koda već ispisuje upozorenje da su linije u ulaznom fajlu različite dužine,
+da dužina linija varira od $najmanja_dužina_reda do $najveća_dužina_reda,
+te da će se koristiti najmanja dužina linije za sve redove, a da će se ostatak kolona u redovima koji su duži od najmanjeg zanemariti.
+
+- `CodeInvaders::Errors::InvalidCharactersError` - Klasa koja predstavlja grešku koja se baca kada ulazni fajl sadrži nepoznate karaktere.
+Ova greška ne prekida izvršavanje koda već ispisuje upozorenje da ulazni fajl sadrži nepoznate karaktere,
+da će se karakteri koji nisu "-" ili "o" tretirati kao šum i da će se za njih slučajnim uzorkom dodijeliti vrijednost "-" ili "o".
+
+- `CodeInvaders::Errors::EmptyLineError` - Klasa koja predstavlja grešku koja se baca kada ulazni fajl ima prazne linije.
+Ova greška ne prekida izvršavanje koda već ispisuje upozorenje da ulazni fajl ima prazne linije, te da će se prazne linije zanemariti.
