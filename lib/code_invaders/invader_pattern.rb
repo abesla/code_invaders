@@ -18,7 +18,9 @@ module CodeInvaders
 
     def parse(raw_pattern)
       lines = raw_pattern.strip.split("\n")
-      lines.map(&:chars)
+      grid = lines.map(&:chars)
+      validator = InputValidator.new(grid)
+      validator.validate
     end
   end
 end
