@@ -9,9 +9,11 @@ module CodeInvaders
       raise Errors::InvalidInputError.new("Pattern invadera je obavezan") if raw_pattern.nil? || raw_pattern.strip.empty?
 
       @name = name
+      puts "Validacija invadera #{@name}..."
       @grid = parse(raw_pattern)
       @height = @grid.size
       @width = @grid.empty? ? 0 : @grid.first.size
+      puts "Validacija invadera #{@name} završena.\n\n"
     end
 
     private

@@ -20,7 +20,7 @@ module CodeInvaders
           result = calculate_match(offset_x, offset_y)
 
           if result[:score] >= @threshold
-            matches << MatchResult.new(@invader.name, offset_x, offset_y, result[:score], off_screen: false)
+            matches << MatchResult.new(@invader.name, offset_x, offset_y, result[:score], off_screen: false) # TODO: logika za handle-anje off-screen detekcija
           end
         end
       end

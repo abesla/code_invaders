@@ -4,12 +4,15 @@ module CodeInvaders
   class RadarSample
     attr_reader :grid, :width, :height
 
-    def initialize(raw_data)
+    def initialize(raw_data, name: "Radar")
       raise Errors::InvalidInputError.new("Radar nije pročitao ništa!") if raw_data.nil? || raw_data.strip.empty?
 
+      @name = name
+      puts "Validacija #{@name}..."
       @grid = parse(raw_data)
       @height = @grid.size
       @width = @grid.empty? ? 0 : @grid.first.size
+      puts "Validacija #{@name} završena.\n\n"
     end
 
     private

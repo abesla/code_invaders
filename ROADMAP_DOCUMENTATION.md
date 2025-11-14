@@ -124,7 +124,7 @@ Tom logikom bi se trebale izbjegaći potencijalne lažne detekcije invadera i ko
 `NOTE: Ako znamo da su prisutne veće količine šuma na radaru, prag detekcije bi trebalo smanjiti, imajući pri tome u vidu da postoji veća šansa za lažnu detekciju.`
 
 ### Threshold parametar
-- **threshold**: Prag detekcije u postotku (default: 0.65 = 65%) 
+- **threshold**: Prag detekcije u postotku (default: 0.7 = 70%) 
 
 __Za potrebe ovog zadatka postavio sam hardcoded vrijednost na 0.7, odnosno 70%, što bi trebalo dati dovoljno precizne, a ne prestroge kriterije za detekciju.
 Ukoliko se ukaže potreba može se dodati još jedan parametar u konstruktor.__
