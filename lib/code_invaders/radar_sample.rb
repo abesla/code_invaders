@@ -12,7 +12,7 @@ module CodeInvaders
       @grid = parse(raw_data)
       @height = @grid.size
       @width = @grid.empty? ? 0 : @grid.first.size
-      puts "Validacija #{@name} završena.\n\n"
+      puts "Validacija #{@name} završena.\n\n=================================================="
     end
 
     private

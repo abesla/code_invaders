@@ -37,7 +37,7 @@ module CodeInvaders
         InvaderPattern.new(invader_name, load_file(file))
       end
 
-      puts "\nUčitavanje svih invadera završeno.\n"
+      puts "Učitavanje svih invadera završeno.\n\n=================================================="
       invaders
     end
 

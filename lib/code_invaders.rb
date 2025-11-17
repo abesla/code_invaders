@@ -16,10 +16,12 @@ require_relative 'code_invaders/errors/empty_line_error'
 module CodeInvaders
   def self.scan(radar, invaders)
     results = []
-
+    puts "\nPokrećem detekciju invadera...\n"
     invaders.each do |invader|
       matcher = PatternMatcher.new(radar, invader)
       results.concat(matcher.find_matches)
+
+      puts "Detekcija invadera završena.\n\n=================================================="
     end
 
     results
@@ -33,13 +35,15 @@ module CodeInvaders
     radar = loader.load_radar
     invaders = loader.load_invaders
 
-    puts "\nPokrećem detekciju invadera...\n"
     results = scan(radar, invaders)
-    puts "Detekcija invadera završena."
+
+
+    results.sort_by! { |r| [-r.score, r.invader_name, r.y, r.x] }
 
     OutputFormatter.print_results(results)
-    puts "Ispis rezultata završen."
-    puts "Ukupno trajanje: #{Time.now - start_time} s"
+    puts "=================================================="
+    puts "=== Ukupno trajanje: #{Time.now - start_time} s ==="
+    puts "=================================================="
   end
 
   if __FILE__ == $PROGRAM_NAME

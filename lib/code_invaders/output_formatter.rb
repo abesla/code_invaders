@@ -8,7 +8,9 @@ module CodeInvaders
         return
       end
 
-      results.sort_by { |r| [-r.score, r.invader_name, r.y, r.x] }.each do |result|
+      puts "=============== Rezultat detekcije ===============\n=================================================="
+      puts "Detektovan broj invadera: #{results.length}\n"
+      results.each do |result|
         puts result.to_s
       end
     end

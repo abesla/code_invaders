@@ -20,7 +20,7 @@ module CodeInvaders
           result = calculate_match(offset_x, offset_y)
 
           if result[:score] >= @threshold
-            matches << MatchResult.new(@invader.name, offset_x, offset_y, result[:score], off_screen: false) # TODO: logika za handle-anje off-screen detekcija
+            matches << MatchResult.new(@invader.name, offset_x, offset_y, result[:score], off_screen: result[:off_screen])
           end
         end
       end
@@ -62,6 +62,7 @@ module CodeInvaders
     def calculate_match(offset_x, offset_y)
       total_possible_matches = 0
       actual_matches = 0
+      is_offscreen = false
 
       @invader.height.times do |dy|
         @invader.width.times do |dx|
@@ -72,17 +73,20 @@ module CodeInvaders
           radar_y = offset_y + dy
           radar_x = offset_x + dx
 
+          total_possible_matches += 1
+
           if radar_y >= 0 && radar_y < @radar.height && radar_x >= 0 && radar_x < @radar.width
-            total_possible_matches += 1
             radar_pixel = @radar.grid[radar_y][radar_x]
             actual_matches += 1 if invader_pixel == radar_pixel
+          else
+            is_offscreen = true
           end
         end
       end
 
       score = total_possible_matches.zero? ? 0.0 : actual_matches.to_f / total_possible_matches
 
-      { score: score, matches: actual_matches, total: total_possible_matches }
+      { score: score, matches: actual_matches, total: total_possible_matches, off_screen: is_offscreen }
     end
   end
 end
