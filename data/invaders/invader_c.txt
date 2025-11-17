@@ -3,8 +3,8 @@
 -oo--oo--oo-
 -oooooooooo-
 --oooooooo--
---o-----o--
---ooooooo--
--oo-ooo-oo-
--o-ooooo-o-
--o-o---o-o-
+--o-----o---
+--ooooooo---
+-oo-ooo-oo--
+-o-ooooo-o--
+-o-o---o-o--
