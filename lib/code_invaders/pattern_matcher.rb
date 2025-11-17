@@ -15,8 +15,8 @@ module CodeInvaders
 
       matches = []
 
-      (0..@radar.height - @invader.height).each do |offset_y|
-        (0..@radar.width - @invader.width).each do |offset_x|
+      ((-@invader.height * @threshold).to_i..(@radar.height - @invader.height * @threshold).to_i).each do |offset_y|
+        ((-@invader.width * @threshold).to_i..(@radar.width - @invader.width * @threshold).to_i).each do |offset_x|
           result = calculate_match(offset_x, offset_y)
 
           if result[:score] >= @threshold
