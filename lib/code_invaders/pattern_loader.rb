@@ -18,10 +18,9 @@ module CodeInvaders
 
       radar_file = radar_files.first
       radar_name = format_invader_name(radar_file)
-      puts "Učitavanje radara: #{radar_name}"
       radar_data = load_file(radar_file)
 
-      RadarSample.new(radar_data, name: radar_name)
+      GridPattern.new(radar_data, name: radar_name)
     end
 
     def load_invaders
@@ -31,14 +30,11 @@ module CodeInvaders
         raise Errors::InvalidInputError, "Nije pronađen nijedan invader fajl u #{@invaders_dir}"
       end
 
-      invaders = invader_files.map do |file|
+      invader_files.map do |file|
         invader_name = format_invader_name(file)
-        puts "Učitavanje invadera: #{invader_name}"
-        InvaderPattern.new(invader_name, load_file(file))
+        invader_data = load_file(file)
+        GridPattern.new(invader_data, name: invader_name)
       end
-
-      puts "Učitavanje svih invadera završeno.\n\n=================================================="
-      invaders
     end
 
     private
