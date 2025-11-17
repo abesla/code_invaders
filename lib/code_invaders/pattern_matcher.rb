@@ -25,7 +25,30 @@ module CodeInvaders
         end
       end
 
-      matches
+      filter_overlapping_matches(matches)
+    end
+    def filter_overlapping_matches(matches)
+      return matches if matches.empty?
+
+      sorted_matches = matches.sort_by { |m| -m.score }
+      filtered = []
+      sorted_matches.each do |candidate|
+        next if filtered.any? { |accepted| overlaps?(candidate, accepted) }
+
+        filtered << candidate
+      end
+      filtered
+    end
+
+    def overlaps?(match1, match2)
+
+      x_overlap = (match1.x < match2.x + @invader.width) &&
+                  (match1.x + @invader.width > match2.x)
+
+      y_overlap = (match1.y < match2.y + @invader.height) &&
+                  (match1.y + @invader.height > match2.y)
+
+      x_overlap && y_overlap
     end
 
     private
